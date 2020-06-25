@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # added "@author" so that the _author partial will work in posts/show.html.erb 
+    @author = @post.author
   end
 
   def new
@@ -12,6 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    # hard code, linking every post to the very first author in the database
     @author = Author.first
     @post = Post.new
     @post.title = params[:title]
